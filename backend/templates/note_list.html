@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'style_list.css' %}">{% endblock css %}
+
+{% block title %}Note: All Notes{% endblock %}
+
+{% block content %}
+<div class="notes">
+    {% for note in notes %}
+    <div class="note">
+        <div class="note-header">
+            <div class="note-header-left">
+                <a href="#"><i class="fa-solid fa-ellipsis"></i></a>
+            <a href="{% url 'note_update' note.pk %}"><i class="fa-solid fa-pen"></i></a>
+                <a href="#"><i class="fa-solid fa-gear"></i></a>
+            </div>
+            <div class="note-header-right">
+                <a href="{% url 'note_delete' note.pk %}"><i class="fa-solid fa-trash"></i></a>
+            </div>
+        </div>
+        <div class="note-body">
+            {{ note.text }}
+            <a href="{% url 'note_detail' note.pk %}">Read more</a>
+        </div>
+    </div>
+    {% empty %}
+        <p>There are no notes yet.</p>
+    {% endfor %}
+</div>
+{% endblock content %}

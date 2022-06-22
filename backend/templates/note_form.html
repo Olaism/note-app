@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %} <link rel="stylesheet" href="{% static 'style_detail.css' %}"> {% endblock css %}
+
+{% block title %}Create a new note {% endblock %}
+
+{% block content %}
+    <div class="note">
+        <div class="note-header">
+            <div class="note-header-left">
+                <a href="#"><i class="fa-solid fa-ellipsis"></i></a>
+                <a href="#"><i class="fa-solid fa-plus"></i></a>
+                <a href="#"><i class="fa-solid fa-gear"></i></a>
+            </div>
+            <div class="note-header-right">
+                <a href="{% url 'note_list' %}"><i class="fa-solid fa-xmark"></i></a>
+            </div>
+        </div>
+        <div class="note-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

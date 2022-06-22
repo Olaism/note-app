@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'style_detail.css' %}">{% endblock css %}
+
+{% block title %}Note Detail{% endblock %}
+
+
+{% block content %}
+    <div class="note">
+        <div class="note-header">
+            <div class="note-header-left">
+                <a href="{% url 'note_list' %}"><i class="fa-solid fa-arrow-left-long"></i></a>
+            </div>
+            <div class="note-header-right"></div>
+        </div>
+        <div class="note-body">
+            
+            <form method="post">
+                {% csrf_token %}
+                <p>Are you sure to delete?</p>
+                <button type="submit" class="btn">Yes, Delete</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #7bdaf3;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.notes {
+    background-color: #ECFAF5;
+    width: 60vw;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 1rem 2rem;
+    gap: 2rem;
+    min-width: 400px;
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.note-header .fa-solid {
+    font-size: 1rem;
+}
+
+.note-header-left a {
+    color: #9EC862;
+    padding: 0.1rem;
+}
+
+.note-header-left a:hover {
+    color: rgb(158, 200, 98, 0.3);
+}
+
+.note-header-right a{
+    color: #626464;
+}
+
+.note-header-right a:hover {
+    color: rgb(98, 100, 100, 0.3);
+}
+
+textarea {
+    width: 100%;
+    border: none;
+    background-color: inherit;
+    padding: 2%;
+}
+
+.note-body {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 1rem;
+    color: #9B9C9C;
+}
+
+.btn {
+    padding: 0.7rem 4rem;
+    border-radius: 10rem;
+    background-color: #9EC862;
+    border: none;
+    color: #fff;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
