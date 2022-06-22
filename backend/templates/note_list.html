@@ -14,14 +14,13 @@
             <div class="note-header-left">
                 <a href="#"><i class="fa-solid fa-ellipsis"></i></a>
             <a href="{% url 'note_update' note.pk %}"><i class="fa-solid fa-pen"></i></a>
-                <a href="#"><i class="fa-solid fa-gear"></i></a>
             </div>
             <div class="note-header-right">
                 <a href="{% url 'note_delete' note.pk %}"><i class="fa-solid fa-trash"></i></a>
             </div>
         </div>
         <div class="note-body">
-            {{ note.text }}
+            {{ note.text|truncatechars:"200" }}
             <a href="{% url 'note_detail' note.pk %}">Read more</a>
         </div>
     </div>

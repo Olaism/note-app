@@ -49,14 +49,21 @@ textarea {
     color: #9B9C9C;
 }
 
-.btn {
+button {
     padding: 0.3rem 2rem;
     border-radius: 10rem;
-    background-color: #f00000;
     border: none;
     color: #fff;
     font-size: 1.2em;
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
+}
+
+.btn-danger {
+    color: #d12c2c;
+}
+
+.btn-primary {
+    background-color: #0909fd;
 }
