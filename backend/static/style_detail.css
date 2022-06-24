@@ -1,4 +1,4 @@
-.note {
+/* .note {
     background-color: #ECFAF5;
     width: 60vw;
     display: flex;
@@ -41,29 +41,10 @@ textarea {
     padding: 2%;
 }
 
-.note-body {
+.card-body {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     gap: 1rem;
     color: #9B9C9C;
-}
-
-button {
-    padding: 0.3rem 2rem;
-    border-radius: 10rem;
-    border: none;
-    color: #fff;
-    font-size: 1.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.btn-danger {
-    color: #d12c2c;
-}
-
-.btn-primary {
-    background-color: #0909fd;
-}
+} */

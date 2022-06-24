@@ -7,23 +7,31 @@
 {% block title %}Note: All Notes{% endblock %}
 
 {% block content %}
-<div class="notes">
+<div class="cards">
     {% for note in notes %}
-    <div class="note">
-        <div class="note-header">
-            <div class="note-header-left">
-                <a href="#"><i class="fa-solid fa-ellipsis"></i></a>
-            <a href="{% url 'note_update' note.pk %}"><i class="fa-solid fa-pen"></i></a>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-header-left">
+                    <a href="">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </a>
+                    <a href="{% url 'note_update' note.pk %}">
+                        <i class="fa-solid fa-pen"></i>
+                    </a>
+                </div>
+                <div class="card-header-right">
+                    <a href="{% url 'note_delete' note.pk %}">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </div>
             </div>
-            <div class="note-header-right">
-                <a href="{% url 'note_delete' note.pk %}"><i class="fa-solid fa-trash"></i></a>
+            <div class="card-body">
+                {{ note.text|truncatechars:"200" }}
+            </div>
+            <div class="card-footer text-center">
+                <a href="{% url 'note_detail' note.pk %}" class="btn btn-success">View More</a>
             </div>
         </div>
-        <div class="note-body">
-            {{ note.text|truncatechars:"200" }}
-            <a href="{% url 'note_detail' note.pk %}">Read more</a>
-        </div>
-    </div>
     {% empty %}
         <p>There are no notes yet.</p>
     {% endfor %}
