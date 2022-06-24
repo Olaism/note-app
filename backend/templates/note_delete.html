@@ -8,14 +8,14 @@
 
 
 {% block content %}
-    <div class="note">
+    <div class="card">
         <div class="note-header">
-            <div class="note-header-left">
+            <div class="card-header-left">
                 <a href="{% url 'note_list' %}"><i class="fa-solid fa-arrow-left-long"></i></a>
             </div>
-            <div class="note-header-right"></div>
+            <div class="card-header-right"></div>
         </div>
-        <div class="note-body">
+        <div class="card-body">
             
             <form method="post">
                 {% csrf_token %}

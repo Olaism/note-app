@@ -7,6 +7,7 @@
 {% block title %}Note: All Notes{% endblock %}
 
 {% block content %}
+<a href="{% url 'note_create' %}" class="btn btn-primary mb-4">New note</a>
 <div class="cards">
     {% for note in notes %}
         <div class="card">
@@ -34,6 +35,7 @@
         </div>
     {% empty %}
         <p>There are no notes yet.</p>
+        <a href="{% url 'note_create' %}">create now</a>
     {% endfor %}
 </div>
 {% endblock content %}

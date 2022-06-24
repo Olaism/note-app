@@ -6,20 +6,32 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Note
 
-class NoteListView(ListView):
+class NoteListView(LoginRequiredMixin, ListView):
     model = Note
     template_name = 'note_list.html'
     context_object_name = 'notes'
 
-class NoteDetailView(DetailView):
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(created_by=self.request.user).order_by('-created_on')
+
+class NoteDetailView(LoginRequiredMixin, DetailView):
     model = Note
     template_name = 'note_detail.html'
     context_object_name = 'note'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(created_by=self.request.user)
 
 class NoteCreateView(LoginRequiredMixin, CreateView):
     model = Note
     fields = ('text',)
     template_name = 'note_form.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(created_by=self.request.user).order_by('-created_on')
     
     def form_valid(self, form):
         note = form.save(commit=False)
@@ -33,8 +45,16 @@ class NoteUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'note_form.html'
     success_url = reverse_lazy('note_list')
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(created_by=self.request.user)
+
 class NoteDeleteView(DeleteView):
     model = Note
     success_url = reverse_lazy('note_list')
     context_object_name = 'note'
     template_name = 'note_delete.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(created_by=self.request.user)
