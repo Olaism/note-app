@@ -9,9 +9,8 @@ jobs:
           key: desp1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
           command: |
-            python3 -m virtualenv venv
-            ~\venv\Scripts\activate
-            pip install -r requirements.txt
+            pipenv install -r requirements.txt
+            pipenv shell
       - save_cache:
           key: desp1-{{ .Branch }}-{{ checksum "requirements.txt" }}
           paths:
@@ -19,7 +18,7 @@ jobs:
       - run:
           name: Running tests
           command: |
-            ~\venv\Scripts\activate
+            pipenv shell
             python3 manage.py test
       - store_artifacts:
           path: test-reports/
