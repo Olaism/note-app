@@ -1,4 +1,4 @@
-#! /bin/sh
+#! usr/bin/sh
 
 file=db.sqlite3
 
