@@ -13,10 +13,10 @@
     <title>{% block title %}My Note app{% endblock title %}</title>
 </head>
 <body>
-    {% block body %}
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light mb-4 p-4">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">My Note</a>
+            <a class="navbar-brand" href="{% url 'note_list' %}">My Note</a>
+            {% if user.is_authenticated %}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,8 +27,8 @@
                             <i class="fa fa-user"></i>({{ user.username }})
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Change Password</a></li>
+                            <li><a class="dropdown-item" href="{% url 'my_account' %}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                         </ul>
@@ -38,6 +38,7 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success ml-2" type="submit">Search</button>
                 </form>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -47,6 +48,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    {% endblock body %}
 </body>
 </html>
