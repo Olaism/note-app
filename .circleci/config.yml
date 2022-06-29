@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  build-backend:
     docker:
       - image: circleci/python:3.10
     steps:
@@ -17,6 +17,13 @@ jobs:
           key: desp1-{{ .Branch }}-{{ checksum "requirements.txt" }}
           paths:
             - "/"
+  test-backend:
+    docker:
+      - image: circleci/python:3.10
+    steps:
+      - checkout
+      - restore_cache:
+        key: desp1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
           name: Running tests
           command: |
