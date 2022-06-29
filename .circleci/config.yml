@@ -34,4 +34,7 @@ jobs:
           destination: python_app
 workflows:
   jobs:
-    - build
+    - build-backend
+    - test-backend:
+        requires:
+          - build-backend
