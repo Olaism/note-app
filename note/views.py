@@ -34,6 +34,16 @@ class NoteDetailView(LoginRequiredMixin, DetailView):
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
+class NoteSearchView(LoginRequiredMixin, ListView):
+    model = Note
+    template_name = 'note_search.html'
+    context_object_name ='notes'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search = self.request.GET.get('q')
+        return queryset.filter(created_by=self.request.user).filter(text__icontains=search).order_by('-created_on')
+
 class NoteCreateView(LoginRequiredMixin, CreateView):
     model = Note
     fields = ('text',)

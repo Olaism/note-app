@@ -34,8 +34,8 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" action="{% url 'note_search' %}">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
                     <button class="btn btn-outline-success ml-2" type="submit">Search</button>
                 </form>
                 {% endif %}
