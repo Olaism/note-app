@@ -1,7 +1,12 @@
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.core.exceptions import PermissionDenied
 from django.views.generic import ListView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    UserPassesTestMixin
+)
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Note
@@ -20,9 +25,14 @@ class NoteDetailView(LoginRequiredMixin, DetailView):
     template_name = 'note_detail.html'
     context_object_name = 'note'
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(created_by=self.request.user)
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     return queryset.filter(created_by=self.request.user)
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.created_by != self.request.user:
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
 
 class NoteCreateView(LoginRequiredMixin, CreateView):
     model = Note
@@ -45,16 +55,23 @@ class NoteUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'note_form.html'
     success_url = reverse_lazy('note_list')
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(created_by=self.request.user)
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.created_by != self.request.user:
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
 
-class NoteDeleteView(DeleteView):
+class NoteDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Note
     success_url = reverse_lazy('note_list')
     context_object_name = 'note'
     template_name = 'note_delete.html'
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(created_by=self.request.user)
+    def test_func(self):
+        obj = self.get_object()
+        return self.request.user == obj.created_by
+
+    def handle_no_permission(self):
+        return JsonResponse(
+            {'message': "You are not authorized to access this page"}
+        )
