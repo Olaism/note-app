@@ -3,12 +3,12 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView
 
-from .forms import AccountCreationForm
+from .forms import CustomUserCreationForm
 
 
 class SignUpView(CreateView):
     template_name = 'signup.html'
-    form_class = AccountCreationForm
+    form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):

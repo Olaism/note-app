@@ -25,9 +25,6 @@ class NoteDetailView(LoginRequiredMixin, DetailView):
     template_name = 'note_detail.html'
     context_object_name = 'note'
 
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-    #     return queryset.filter(created_by=self.request.user)
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj.created_by != self.request.user:
@@ -39,6 +36,11 @@ class NoteSearchView(LoginRequiredMixin, ListView):
     template_name = 'note_search.html'
     context_object_name ='notes'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['query'] = self.request.GET.get('q')
+        return context
+
     def get_queryset(self):
         queryset = super().get_queryset()
         search = self.request.GET.get('q')
@@ -48,10 +50,6 @@ class NoteCreateView(LoginRequiredMixin, CreateView):
     model = Note
     fields = ('text',)
     template_name = 'note_form.html'
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(created_by=self.request.user).order_by('-created_on')
     
     def form_valid(self, form):
         note = form.save(commit=False)

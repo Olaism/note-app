@@ -7,6 +7,10 @@
 {% block title %}search{% endblock %}
 
 {% block content %}
+{% if notes %}
+    <h3 class="mb-4 bg-secondary px-4 py-2">Result for "{{ query }}"</h3>
+{% endif %}
+
 <div class="cards">
     {% for note in notes %}
         <div class="card">
@@ -33,7 +37,7 @@
             </div>
         </div>
     {% empty %}
-        <p>There are no result for the search word.</p>
+        <p>There are no result for the search word "{{ query }}."</p>
     {% endfor %}
 </div>
 {% endblock content %}
