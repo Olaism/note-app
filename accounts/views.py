@@ -14,7 +14,7 @@ class SignUpView(CreateView):
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = get_user_model()
     template_name = 'my_account.html'
-    fields = ('first_name', 'last_name', 'email',)
+    fields = ('profile_pic', 'first_name', 'last_name', 'email',)
     success_url = reverse_lazy('my_account')
 
     def get_object(self):

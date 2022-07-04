@@ -1,13 +1,28 @@
 version: '3'
 
 services:
+  db:
+    image: postgres:11
+    environment:
+      POSTGRES_DB: 'db'
+      POSTGRES_PASSWORD: 'mypostgrespassword'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
   web:
     build: .
+    command: python /code/manage.py runserver 0.0.0.0:8000
     environment:
       - SECRET_KEY=django-insecure--d@zzw!^omk!notmixl&0sd3z1i=08ttu16r)lzch0lb1)*pfm
       - DEBUG=1
+      - POSTGRES_NAME='postgres'
+      - POSTGRES_USER='postgres'
+      - POSTGRES_PASSWORD='mypostgrespassword'
     volumes:
       - .:/code
-      - db.sqlite3
     ports:
       - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
