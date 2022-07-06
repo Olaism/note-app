@@ -64,11 +64,6 @@ class NoteCreatePostMethodViewTestCase(TestCase):
             email='testuser@email.com',
             password='testpassword'
         )
-        self.unauthorized_user = get_user_model().objects.create(
-            username='testuser02', 
-            email='testuser02@gmail.com',
-            password='testpassword02'
-        )
         self.url = reverse('note_create')
         # self.response = self.client.post(url, data)
 
