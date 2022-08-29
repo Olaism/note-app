@@ -8,7 +8,7 @@ jobs:
       - run:
           name: create a .env file and .db-env file
           command: |
-            touch .env
+            touch ~/circleci/project/.env
             echo ENVIRONMENT=${ENVIRONMENT} >> .env
             echo SECRET_KEY=${SECRET_KEY} >> .env
             echo DB_ENGINE=${DB_ENGINE} >> .env
@@ -23,7 +23,7 @@ jobs:
             echo EMAIL_USER=${EMAIL_USER} >> .env
             echo EMAIL_PASSWORD=${EMAIL_PASSWORD} >> .env
 
-            touch .env-db
+            touch ~/circleci/project/.env-db
             echo POSTGRES_DB=${POSTGRES_DB} >> .env-db
             echo POSTGRES_USER=${DB_USERNAME} >> .env-db
             echo POSTGRES_PASSWORD=${DB_PASSWORD} >> .env-db
