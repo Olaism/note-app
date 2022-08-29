@@ -6,10 +6,10 @@ class CustomUserCreationForm(UserCreationForm):
     email = forms.CharField(max_length=254, widget=forms.EmailInput(), required=True)
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email', 'profile_pic')
+        fields = ('username', 'email',)
 
 class CustomUserChangeForm(UserChangeForm):
     email = forms.CharField(max_length=254, widget=forms.EmailInput(), required=True)
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email', 'profile_pic')
+        fields = ('username', 'email',)
