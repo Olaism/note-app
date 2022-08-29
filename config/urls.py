@@ -10,7 +10,7 @@ from django.conf.urls.static import static
 from accounts.views import SignUpView, UserUpdateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('olaism-admin/', admin.site.urls),
     path('notes/', include('note.urls')),
     path('', RedirectView.as_view(url='/notes/all/')),
     path('profile/', UserUpdateView.as_view(), name='my_account'),

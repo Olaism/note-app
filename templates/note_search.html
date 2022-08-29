@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load humanize %}
 
 {% block css %}<link rel="stylesheet" href="{% static 'style_list.css' %}">{% endblock css %}
 
@@ -29,7 +30,7 @@
                   <a href="{% url 'note_update' note.pk %}" role="button" class="btn btn-sm btn-outline-primary">Edit</a>
                   <a href="{% url 'note_delete' note.pk %}" role="button" class="btn btn-sm btn-outline-danger">Delete</a>
                 </div>
-                <small class="text-muted">{{ note.created_on|date:"M d, Y" }}</small>
+                <small class="text-muted">{{ note.created_on|naturaltime }}</small>
               </div>
             </div>
           </div>
