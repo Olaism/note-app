@@ -4,6 +4,11 @@
 
 {% load crispy_forms_tags %}
 
+{% block css %}
+    <!-- SimpleMD Editor CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+{% endblock css %}
+
 {% block title %}Create a new note {% endblock %}
 
 {% block fa-nav %}
@@ -29,3 +34,10 @@
         </div>
     </div>
 {% endblock %}
+
+{% block js %}
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+        var simplemde = new SimpleMDE();
+    </script>
+{% endblock js %}

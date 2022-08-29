@@ -18,7 +18,7 @@
             <div class="card-body">
               <p class="card-text">
                 <a style="color: #333; text-decoration: none;" href="{% url 'note_detail' note.pk %}">
-                    {{ note.text|truncatechars:"200" }}
+                    {{ note.get_text_as_markdown|truncatechars:"200" }}
                 </a>
               </p>
               <div class="d-flex justify-content-between align-items-center">
