@@ -8,7 +8,7 @@ jobs:
       - run:
           name: create a .env file and .db-env file
           command: |
-            touch ~/circleci/project/.env
+            touch .env
             echo ENVIRONMENT=${ENVIRONMENT} >> .env
             echo SECRET_KEY=${SECRET_KEY} >> .env
             echo DB_ENGINE=${DB_ENGINE} >> .env
@@ -23,10 +23,14 @@ jobs:
             echo EMAIL_USER=${EMAIL_USER} >> .env
             echo EMAIL_PASSWORD=${EMAIL_PASSWORD} >> .env
 
-            touch ~/circleci/project/.env-db
+            touch .env-db
             echo POSTGRES_DB=${POSTGRES_DB} >> .env-db
             echo POSTGRES_USER=${DB_USERNAME} >> .env-db
             echo POSTGRES_PASSWORD=${DB_PASSWORD} >> .env-db
+      - persist_to_workspace:
+          root: .
+          paths:
+            - "/"
   build-backend:
     docker:
       - image: circleci/python:3.10
@@ -34,6 +38,8 @@ jobs:
       - checkout
       - restore_cache:
           keys: [docker-build]
+      - attach_workspace:
+          at: .
       - run:
           command: |
             docker-compose up -d --build
@@ -50,6 +56,8 @@ jobs:
       - checkout
       - restore_cache:
           keys: [docker-build]
+      - attach_workspace:
+          at: .
       - run:
           name: Running tests
           command: |
@@ -60,6 +68,7 @@ jobs:
 workflows:
   build_test:
     jobs:
+      - basic-setup
       - build-backend
       - test-backend:
           requires:
