@@ -1,5 +1,32 @@
 version: 2.1
 jobs:
+  basic-setup:
+    docker:
+      - image: circleci/python:3.10
+    steps:
+      - checkout
+      - run:
+          name: create a .env file and .db-env file
+          command: |
+            touch .env
+            echo ENVIRONMENT=${ENVIRONMENT} >> .env
+            echo SECRET_KEY=${SECRET_KEY} >> .env
+            echo DB_ENGINE=${DB_ENGINE} >> .env
+            echo DB_TYPE=${DB_TYPE} >> .env
+            echo DB_DATABASE_NAME=${DB_DATABASE_NAME} >> .env
+            echo DB_USERNAME=${DB_USERNAME} >> .env
+            echo DB_PASSWORD=${DB_PASSWORD} >> .env
+            echo DB_HOST=${DB_HOST} >> .env
+            echo DB_PORT=${DB_PORT} >> .env
+            echo EMAIL_BACKEND=${EMAIL_BACKEND} >> .env
+            echo EMAIL_HOST=${EMAIL_HOST} >> .env
+            echo EMAIL_USER=${EMAIL_USER} >> .env
+            echo EMAIL_PASSWORD=${EMAIL_PASSWORD} >> .env
+
+            touch .env-db
+            echo POSTGRES_DB=${POSTGRES_DB} >> .env-db
+            echo POSTGRES_USER=${DB_USERNAME} >> .env-db
+            echo POSTGRES_PASSWORD=${DB_PASSWORD} >> .env-db
   build-backend:
     docker:
       - image: circleci/python:3.10
