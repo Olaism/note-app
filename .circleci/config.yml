@@ -69,7 +69,9 @@ workflows:
   build_test:
     jobs:
       - basic-setup
-      - build-backend
+      - build-backend:
+          requires:
+            - basic-setup
       - test-backend:
           requires:
             - build-backend
