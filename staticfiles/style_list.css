@@ -1,0 +1,9 @@
+.cards {
+    display: flex;
+    gap: 2rem;
+    flex-flow: row wrap;
+}
+
+.card {
+    flex: 1 200px;
+}

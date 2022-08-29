@@ -1,8 +1,15 @@
 FROM python:3
+
+# Set environment variables
 ENV PYTHONUNBUFFERED 1
-RUN mkdir /code
+ENV PYTHONDONTWRITEBYTECODE 1
+# Set work dir
 WORKDIR /code
-COPY requirements.txt /code/
-RUN pip install -r requirements.txt
+
+COPY Pipfile Pipfile.lock /code/
+RUN pip install pipenv && pipenv install --system
+
+# Copy project
 COPY . /code/
-# CMD sh init.sh && python3 manage.py runserver 0.0.0.0:8000
+
+CMD gunicorn config.wsgi:application  --bind 0.0.0.0:$PORT

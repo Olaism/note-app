@@ -1,3 +1,4 @@
+# import debug_toolbar
 from xml.dom.minidom import Document
 from django.contrib import admin
 from django.urls import include, path
@@ -26,4 +27,10 @@ urlpatterns = [
     path('password/reset/done/', views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),
     path('password/reset/<uidb64>/<token>/', views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'), name='password_reset_confirm'),
     path('password/reset/success/', views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), name='password_reset_complete')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+    # urlpatterns = [
+    # path('__debug__/', include(debug_toolbar.urls)),
+    # ] + urlpatterns
