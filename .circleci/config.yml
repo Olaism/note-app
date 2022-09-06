@@ -27,10 +27,12 @@ jobs:
             echo POSTGRES_DB=${POSTGRES_DB} >> .env-db
             echo POSTGRES_USER=${DB_USERNAME} >> .env-db
             echo POSTGRES_PASSWORD=${DB_PASSWORD} >> .env-db
+
+            ls .
       - persist_to_workspace:
           root: .
           paths:
-            - .circleci/project/
+            - .circleci/
   build-backend:
     docker:
       - image: circleci/python:3.10
@@ -39,7 +41,10 @@ jobs:
       - restore_cache:
           keys: [docker-build]
       - attach_workspace:
-          at: .
+          at: .circleci
+      - run:
+          command: |
+            ls .
       - run:
           command: |
             docker-compose up -d --build
