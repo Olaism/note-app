@@ -5,7 +5,7 @@ services:
     image: postgres:11
     environment:
       - ENVIRONMENT=development
-      - SECRET_KEY='i!y=5q7i*vsvvu8h$2s5o_y39$ry4q%ftchfnift*z7_5&dl)('
+      - SECRET_KEY=i!y=5q7i*vsvvu8h$2s5o_y39$ry4q%ftchfnift*z7_5&dl)(
       - DB_ENGINE=django.db.backends.postgresql
       - DB_TYPE=postgres
       - DB_DATABASE_NAME=note_app
