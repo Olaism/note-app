@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:11
+    environment:
+      - ENVIRONMENT=development
+      - SECRET_KEY='i!y=5q7i*vsvvu8h$2s5o_y39$ry4q%ftchfnift*z7_5&dl)('
+      - DB_ENGINE=django.db.backends.postgresql
+      - DB_TYPE=postgres
+      - DB_DATABASE_NAME=note_app
+      - DB_USERNAME=olaism
+      - DB_PASSWORD=asggs776egiudyixox088dgdy7
+      - DB_HOST=db
+      - DB_PORT=5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+  web:
+    build: .
+    command: python /code/manage.py runserver 0.0.0.0:8000
+    environment:
+      - POSTGRES_DB=note_app
+      - POSTGRES_USER=olaism
+      - POSTGRES_PASSWORD=asggs776egiudyixox088dgdy7
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
