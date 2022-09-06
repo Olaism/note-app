@@ -30,7 +30,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - "/"
+            - .circleci/
   build-backend:
     docker:
       - image: circleci/python:3.10
