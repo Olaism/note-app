@@ -33,6 +33,8 @@
             </div>
           </div>
         </div>
+        {% empty %}
+          <p class="alert alert-info">There are no notes yet.</p>
         {% endfor %}
       </div>
       {% include 'includes/pagination.html' %}
