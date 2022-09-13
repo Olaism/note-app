@@ -12,6 +12,8 @@ from accounts.views import SignUpView, UserUpdateView
 urlpatterns = [
     path('olaism-admin/', admin.site.urls),
     path('notes/', include('note.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/v1/notes/', include('api.urls')),
     path('', RedirectView.as_view(url='/notes/all/')),
     path('profile/', UserUpdateView.as_view(), name='my_account'),
     path('signup/', SignUpView.as_view(), name='signup'),

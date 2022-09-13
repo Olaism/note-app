@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # Third Party
     'crispy_forms',
     'crispy_bootstrap5',
+    'rest_framework',
     # 'debug_toolbar',
 
     # local apps
@@ -147,12 +148,15 @@ LOGIN_REDIRECT_URL = 'note_list'
 LOGOUT_REDIRECT_URL = 'login'
 
 # EMAIL CONFIGURATION
-EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
-EMAIL_USE_TLS = True
-EMAIL_PORT=587
-EMAIL_HOST_USER=os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_PASSWORD')
+if ENVIRONMENT == 'production':
+    EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
+    EMAIL_HOST = os.environ.get('EMAIL_HOST')
+    EMAIL_USE_TLS = True
+    EMAIL_PORT=587
+    EMAIL_HOST_USER=os.environ.get('EMAIL_USER')
+    EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_PASSWORD')
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
@@ -185,3 +189,10 @@ if ENVIRONMENT == 'production':
     SECURE_HSTS_PRELOAD = True
     SECURE_CONTENT_TYPE_NOSTIFF = True
     CSRF_COOKIE_SECURE = True
+
+# DJANGO REST FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
