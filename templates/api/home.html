@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} My Note API {% endblock %}
+
+
+{% block content %}
+    <section class="header">
+        <div class="intro bg-dark text-light p-3">
+            <h2 class="mb-0">The Note API</h2>
+            <h6 class="my-0">Note API placeholders</h6>
+            <small class="my-1">Find a list of your note here.</small>
+        </div>
+        <div class="bg-secondary text-light my-3 p-3">
+            <p class="endpoint">Endpoints</p>
+            <ul class="list-group">
+                <li class="list-group-item">All Notes</li>
+                <li class="list-group-item">Note by ID</li>
+                <li class="list-group-item">Add a note</li>
+                <li class="list-group-item">Edit a note</li>
+                <li class="list-group-item">Delete a note</li>
+              </ul>
+            <p class="mt-2">Methods</p>
+            <ul class="list-group">
+                <li class="list-group-item">GET</li>
+                <li class="list-group-item">POST</li>
+                <li class="list-group-item">PUT</li>
+                <li class="list-group-item">DELETE</li>
+              </ul>
+        </div>
+    </section>
+    <section class="ease-of-use bg-info text-light p-3">
+        <h4>Easy to use placeholders</h4>
+        <small class="text-muted">Just find a note and create a url,not quite implemented user authenmtication yet</small>
+        <p class="bg-light text-dark w-100 p-2 text-center mt-1">
+            <small class="text-info">http://localhost:8000/api/v1/notes/</small>
+        </p>
+    </section>
+{% endblock content %}

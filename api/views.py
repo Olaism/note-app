@@ -1,8 +1,12 @@
+from django.views.generic import TemplateView
 from rest_framework import generics
 
 from note.models import Note
 from .permissions import IsNoteCreator
 from .serializers import NoteSerializer
+
+class APIHome(TemplateView):
+    template_name = 'api/home.html'
 
 
 class NoteList(generics.ListCreateAPIView):
