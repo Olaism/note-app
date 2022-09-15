@@ -9,7 +9,7 @@ class NoteListRedirectView(SimpleTestCase):
 
     def test_redirection(self):
         url = reverse('note_list')
-        login_url = reverse('login')
+        login_url = reverse('account_login')
         self.response = self.client.get(url)
         self.assertRedirects(self.response, f"{login_url}?next={url}")
 
@@ -37,8 +37,8 @@ class NoteListTest(TestCase):
 
     def test_note_list_view_contains_correct_links(self):
         link_to_profile = reverse('my_account')
-        link_to_password_change = reverse('password_change')
-        link_to_logout = reverse('logout')
+        link_to_password_change = reverse('account_change_password')
+        link_to_logout = reverse('account_logout')
         link_to_create_new_note = reverse('note_create')
         self.assertContains(self.response, link_to_profile)
         self.assertContains(self.response, link_to_password_change)
@@ -49,8 +49,8 @@ class NoteListTest(TestCase):
         self.assertContains(self.response, 'There are no notes yet.')
 
     def test_note_list_view_does_not_contain_links(self):
-        link_to_login = reverse('login')
-        link_to_signup = reverse('signup')
+        link_to_login = reverse('account_login')
+        link_to_signup = reverse('account_signup')
         self.assertNotContains(self.response, link_to_login)
         self.assertNotContains(self.response, link_to_signup)
 

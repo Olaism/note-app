@@ -2,7 +2,7 @@
 from xml.dom.minidom import Document
 from django.contrib import admin
 from django.urls import include, path
-from django.views.generic import RedirectView
+from django.views.generic import TemplateView
 from django.contrib.auth import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -15,7 +15,7 @@ urlpatterns = [
     path('api/v1/account/', include('dj_rest_auth.urls')),
     path('api/v1/account/register/', include('dj_rest_auth.registration.urls')),
     path('api/v1/', include('api.urls')),
-    path('', RedirectView.as_view(url='/notes/all/')),
+    path('', TemplateView.as_view(template_name='index.html')),
     path('profile/', UserUpdateView.as_view(), name='my_account'),
     path('account/', include('allauth.urls')),
 ]

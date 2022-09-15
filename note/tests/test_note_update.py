@@ -9,7 +9,7 @@ from ..views import NoteUpdateView
 class LoginRequiredNoteUpdateGetMethodView(SimpleTestCase):
     def test_redirection(self):
         url = reverse('note_create')
-        login_url = reverse('login')
+        login_url = reverse('account_login')
         response = self.client.get(url)
         self.assertRedirects(response, '{0}?next={1}'.format(login_url, url))
 
