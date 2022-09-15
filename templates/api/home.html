@@ -13,15 +13,63 @@
             <small class="my-1">Find a list of your note here.</small>
         </div>
         <div class="bg-secondary text-light my-3 p-3">
-            <p class="endpoint">Endpoints</p>
+            <p class="endpoint mt-2">Notes Endpoints</p>
             <ul class="list-group">
-                <li class="list-group-item">All Notes</li>
-                <li class="list-group-item">Note by ID</li>
-                <li class="list-group-item">Add a note</li>
-                <li class="list-group-item">Edit a note</li>
-                <li class="list-group-item">Delete a note</li>
+                <li class="list-group-item">All Notes - 
+                    <small class="text-muted">
+                        https://olaism-note-app.com/api/v1/notes/
+                    </small>
+                </li>
+                <li class="list-group-item">Note by ID - 
+                    <small class="text-muted">
+                        https://olaism-note-app.com/api/v1/notes/&lt;id&gt;/
+                    </small>
+                </li>
+                <li class="list-group-item">Add a note -
+                    <small class="text-muted">
+                        https://olaism-note-app.com/api/v1/notes/new/
+                    </small>
+                </li>
+                <li class="list-group-item">Edit a note -
+                    <small class="text-muted">
+                        https://olaism-note-app.com/api/v1/notes/&lt;id&gt;/edit/
+                    </small>
+                </li>
+                <li class="list-group-item">Delete a note -
+                    <small class="text-muted">
+                        https://olaism-note-app.com/api/v1/notes/&lt;id&gt;/delete/
+                    </small>
+                </li>
               </ul>
-            <p class="mt-2">Methods</p>
+              <p class="endpoint mt-2">Authentication Endpoints</p>
+              <ul class="list-group">
+                <li class="list-group-item">Register - 
+                    <small class="text-muted">
+                        https://olaism-note-app.herokuapp.com/api/v1/account/register/
+                    </small>
+                </li>
+                <li class="list-group-item">Log in - 
+                    <small class="text-muted">
+                        https://olaism-note-app.herokuapp.com/api/v1/account/login/
+                    </small>
+                </li>
+                <li class="list-group-item">Log out -
+                    <small class="text-muted">
+                        https://olaism-note-app.herokuapp.com/api/v1/account/logout/
+                    </small>
+                </li>
+                <li class="list-group-item">Password Change -
+                    <small class="text-muted">
+                        https://olaism-note-app.herokuapp.com/api/v1/password/change/
+                    </small>
+                </li>
+                <li class="list-group-item">Password Reset - 
+                    <small class="text-muted">
+                        https://olaism-note-app.herokuapp.com/api/v1/password/reset/
+                    </small>
+                </li>
+              </ul>
+            <p class="mt-2">HTTP Methods</p>
             <ul class="list-group">
                 <li class="list-group-item">GET</li>
                 <li class="list-group-item">POST</li>
