@@ -16,6 +16,11 @@
     <title>{% block title %}My Note app{% endblock title %}</title>
 </head>
 <body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light mb-4 p-4">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'note_list' %}">My Note</a>
@@ -31,9 +36,9 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'my_account' %}">Profile</a></li>
-                            <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
