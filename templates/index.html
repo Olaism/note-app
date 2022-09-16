@@ -5,5 +5,10 @@
 {% endblock title %}
 
 {% block content %}
-    Homepage
+    <div class="row justify-content-center">
+        <div class="col-sm-8 col-md-10 col-lg-12">
+            <h2>Welcome!</h2>
+            Proceed to <a href="{% url 'account_login' %}">Login</a> Or Visit the <a href="{% url 'api:home' %}">API documentation</a> page.
+        </div>
+    </div>
 {% endblock content %}
