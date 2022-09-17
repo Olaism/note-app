@@ -58,6 +58,11 @@ class NoteListTest(TestCase):
         self.assertContains(self.response, 'type="search"')
         self.assertContains(self.response, '<input', 1)
 
+    def test_querysets(self):
+        notes = self.response.context.get('notes')
+        self.assertFalse(notes)
+        self.assertEquals(len(notes), 0)
+
 class NoteListNoteCreationTest(TestCase):
     
     def setUp(self):
@@ -83,3 +88,8 @@ class NoteListNoteCreationTest(TestCase):
         self.assertContains(self.response, delete_note_link)
         self.assertContains(self.response, note_details_link)
         self.assertContains(self.response, note_create_link)
+
+    def test_querysets(self):
+        notes = self.response.context['notes']
+        self.assertTrue(notes)
+        self.assertEquals(len(notes), 1)
