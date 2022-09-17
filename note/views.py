@@ -1,5 +1,6 @@
+from django.views import View
 from django.http import JsonResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
 from django.views.generic import ListView, DetailView
@@ -44,7 +45,7 @@ class NoteSearchView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        search = self.request.GET.get('q')
+        search = self.request.GET.get('q', '')
         return queryset.filter(created_by=self.request.user).filter(text__icontains=search).order_by('-created_on')
 
 class NoteCreateView(LoginRequiredMixin, CreateView):
