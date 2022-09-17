@@ -15,7 +15,7 @@ urlpatterns = [
     path('api/v1/account/', include('dj_rest_auth.urls')),
     path('api/v1/account/register/', include('dj_rest_auth.registration.urls')),
     path('api/v1/', include('api.urls')),
-    path('', TemplateView.as_view(template_name='index.html')),
+    path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('profile/', UserUpdateView.as_view(), name='my_account'),
     path('account/', include('allauth.urls')),
 ]

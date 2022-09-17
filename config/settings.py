@@ -221,6 +221,10 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_BLACKLIST = ['admin', 'olaism-admin', 'olaism']
 ACCOUNT_UNIQUE_EMAIL = True
 SOCIALACCOUNT_STORE_TOKENS = True
+if not DEBUG:
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = (
+            "rest_framework.renderers.JSONRenderer",
+    )
 
 SITE_ID = 1
 
